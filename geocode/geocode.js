@@ -10,9 +10,9 @@ const geocodeAddress = (address, callback) => {
     }, (error, response, body) => {
     
         if (error) {
-            callback('Unable to connect to Google servers.')
+            callback('Unable to connect to Google servers.', undefined)
         } else if (body.status === 'ZERO_RESULTS') {
-            callback('Unable to find that address.')
+            callback('Unable to find that address.', undefined)
         } else if (body.status === 'OK') {
             callback(undefined, {
                 address: body.results[0].formatted_address,
@@ -23,6 +23,4 @@ const geocodeAddress = (address, callback) => {
     })
 }
 
-module.exports = {
-    geocodeAddress
-}
+module.exports.geocodeAddress = geocodeAddress
